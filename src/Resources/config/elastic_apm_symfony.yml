@@ -1,0 +1,21 @@
+elastic_apm_symfony:
+  active: true
+  app:
+    appName: Symfony Aplication
+    appVersion: '1.0'
+  env:
+    env: ['DOCUMENT_ROOT', 'REMOTE_ADDR']
+    enviroment: dev
+  httpClient:
+    verify: false
+  server:
+    serverUrl: http://127.0.0.1:8200
+    secretToken:
+    apmVersion: v2
+  errors:
+    enabled: true
+    exclude:
+      status_codes: []
+      exceptions: []
+  transactions:
+    enabled: true

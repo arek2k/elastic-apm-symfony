@@ -1,0 +1,44 @@
+services:
+  arek2k_elastic_apm_symfony.listener.exception:
+    class: Arek2k\ElasticApmSymfony\EventListener\ExceptionListener
+    arguments:
+      - '@arek2k_elastic_apm_symfony.service.apm_agent'
+    calls:
+      - method: setLogger
+        arguments:
+          - '@?logger'
+    tags:
+      - { name: kernel.event_listener, priority: 32 }
+
+  arek2k_elastic_apm_symfony.listener.request:
+    class: Arek2k\ElasticApmSymfony\EventListener\TransactionRegisterListener
+    arguments:
+    - '@arek2k_elastic_apm_symfony.service.apm_agent'
+    calls:
+    - method: setLogger
+      arguments:
+        - '@?logger'
+    tags:
+    - { name: kernel.event_listener, priority: 31 }
+
+  arek2k_elastic_apm_symfony.listener.terminate:
+    class: Arek2k\ElasticApmSymfony\EventListener\TransactionTerminateListener
+    arguments:
+    - '@arek2k_elastic_apm_symfony.service.apm_agent'
+    calls:
+    - method: setTokenStorage
+      arguments:
+        - '@security.token_storage'
+    - method: setLogger
+      arguments:
+        - '@?logger'
+    tags:
+    - { name: kernel.event_listener,  priority: -2048 }
+
+  arek2k_elastic_apm_symfony.service.apm_agent:
+    class: PhilKra\Agent
+    factory: [ 'Arek2k\ElasticApmSymfony\Factory\ApmAgent', 'createAgent' ]
+    arguments:
+      - '%arek2k_elastic_apm_symfony%'
+
+

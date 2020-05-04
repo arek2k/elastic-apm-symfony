@@ -1,0 +1,45 @@
+{
+    "name": "arek2k/elastic-apm-symfony",
+    "description": "PHP Agent for Elastic APM",
+    "type": "symfony-bundle",
+    "license": "proprietary",
+    "version": "1.0.0",
+    "require": {
+        "php": "^7.4",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "philkra/elastic-apm-php-agent": ">=7.0.0",
+        "sensio/framework-extra-bundle": "^5.2",
+        "symfony/flex": "^1.3.1",
+        "symfony/framework-bundle": "4.4.*",
+        "symfony/lts": "^4@dev",
+        "symfony/yaml": "4.4.*"
+    },
+    "require-dev": {
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Arek2k\\ElasticApmSymfony\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Arek2k\\ElasticApmSymfony\\Tests\\": "tests"
+        }
+    },
+    "conflict": {
+        "symfony/symfony": "*"
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "4.4.*"
+        }
+    }
+}
