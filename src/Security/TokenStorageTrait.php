@@ -2,7 +2,7 @@
 
 namespace Arek2k\ElasticApmSymfony\Security;
 
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\UsageTrackingTokenStorage;
 
 trait TokenStorageTrait
 {
@@ -11,7 +11,7 @@ trait TokenStorageTrait
      */
     protected $tokenStorage;
 
-    public function setTokenStorage(TokenStorage $tokenStorage)
+    public function setTokenStorage(UsageTrackingTokenStorage $tokenStorage)
     {
         $this->tokenStorage = $tokenStorage;
     }
